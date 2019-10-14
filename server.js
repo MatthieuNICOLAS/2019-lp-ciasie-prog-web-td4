@@ -53,9 +53,10 @@ app.delete("/todo/:id", function (req, res) {
     const usedIds = todos.map(function (todo) {
         return todo.id
     })
-    if (typeof req.params.id === "number" && usedIds.includes(req.params.id)) {
 
-        const id = req.params.id
+    const id = Number.parseInt(req.params.id)
+    if (Number.isInteger(id) && usedIds.includes(id)) {
+
         todos = todos.filter(function (todo) {
           return todo.id !== id
         })
